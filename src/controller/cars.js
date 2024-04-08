@@ -1,21 +1,10 @@
-const mockCars = [
-    { id: 1, brand: "Audi", model: "A3" },
-    { id: 2, brand: "Renault", model: "Clio" },
-    { id: 3, brand: "Peugeot", model: "208" },
-    { id: 4, brand: "BMW", model: "Serie 1" },
-    { id: 5, brand: "Mercedes", model: "Classe A" },
-    { id: 6, brand: "Citroen", model: "C3" },
-    { id: 7, brand: "Ford", model: "Fiesta" },
-    { id: 8, brand: "Opel", model: "Corsa" },
-    { id: 9, brand: "Toyota", model: "Yaris" },
-    { id: 10, brand: "Volkswagen", model: "Polo" },
-  ];
+import { mockCars } from "../Data/mock.js";
 
-const getCars = (req, res) => {
+ const getCars = (req, res) => {
     res.json(mockCars);
 };
 
-const getCarById = (req, res) => {
+ const getCarById = (req, res) => {
     const id = parseInt(req.params.id, 10);
     const car = mockCars.find(car => car.id === id);
     if (car) {
@@ -25,7 +14,7 @@ const getCarById = (req, res) => {
     }
 };
 
-const addCar = (req, res) => {
+ const addCar = (req, res) => {
     const bodyContent = req.body;
     const id = mockCars.length + 1;
     const newCar = { id, ...bodyContent };
@@ -33,7 +22,7 @@ const addCar = (req, res) => {
     res.status(201).json(newCar);
 };
 
-const deleteCarById = (req, res) => {
+ const deleteCarById = (req, res) => {
     const id = parseInt(req.params.id, 10);
     const carIndex = mockCars.findIndex(car => car.id === id);
     if (carIndex !== -1) {
@@ -44,7 +33,7 @@ const deleteCarById = (req, res) => {
     }
 };
 
-const updateCarById = (req, res) => {
+ const updateCarById = (req, res) => {
     const id = parseInt(req.params.id, 10);
     const carIndex = mockCars.findIndex(car => car.id === id);
     if (carIndex !== -1) {

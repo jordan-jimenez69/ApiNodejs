@@ -1,8 +1,8 @@
 import express from "express";
 
-const router = express.Router();
-
 import carsController from '../controller/cars.js';
+
+  const router = express.Router();
 
 
 router.get("/", carsController.getCars);
