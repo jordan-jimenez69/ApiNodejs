@@ -3,3 +3,28 @@ GET http://localhost:3001
 ###
 
 GET http://localhost:3001/cars
+
+###
+
+POST http://localhost:3001/cars
+Content-Type: application/json
+
+{
+    "brand": "Ferrari",
+    "model": "F8"
+}
+
+###
+
+
+DELETE http://localhost:3001/cars/11
+
+###
+
+PUT http://localhost:3001/cars/11
+Content-Type: application/json
+
+{
+    "brand": "Lamborgigni",
+    "model": "F8"
+}

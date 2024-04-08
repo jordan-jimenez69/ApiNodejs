@@ -29,4 +29,35 @@ const mockCars = [
     }
 });
 
+router.post("/", (req, res) => {
+    const bodyContent = req.body;
+    const id = mockCars.length + 1;
+    const newCar = { id, ...bodyContent};
+    mockCars.push(newCar);
+    res.status(201).json(newCar);
+});
+
+router.delete("/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = mockCars.findIndex(car => car.id === id);
+    if (index !== -1) {
+        mockCars.splice(index, 1);
+        res.json({ message: "Voiture supprimée avec succès" });
+    } else {
+        res.status(404).json({ message: "Voiture non trouvée" });
+    }
+});
+
+router.put("/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = mockCars.findIndex(car => car.id === id);
+    if (index !== -1) {
+        const updatedCar = { ...mockCars[index], ...req.body };
+        mockCars[index] = updatedCar;
+        res.json(updatedCar);
+    } else {
+        res.status(404).json({ message: "Voiture non trouvée" });
+    }
+});
+
 export default router;

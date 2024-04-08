@@ -6,6 +6,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 //MidleWare
+
+app.use(express.json());
 app.use("/cars", carsRoutes);
 
 //Routes
