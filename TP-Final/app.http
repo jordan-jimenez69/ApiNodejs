@@ -4,29 +4,28 @@ GET http://localhost:3001
 
 GET http://localhost:3000/villes
 
+
 ###
 
-POST http://localhost:3001/cars
+GET http://localhost:3000/villes/66150266a9433210119f43f6
+
+
+###
+
+DELETE http://localhost:3000/villes/661507b913ecda6dabc3ce77
+
+###
+
+PUT http://localhost:3000/villes/66150266a9433210119f43f6
 Content-Type: application/json
 
 {
-    "brand": "Ferrari",
-    "model": "F8"
-}
-
-###
-
-
-DELETE http://localhost:3001/cars/11
-
-###
-
-PUT http://localhost:3001/cars/11
-Content-Type: application/json
-
-{
-    "brand": "Lamborgigni",
-    "model": "F8"
+    "ville": "Hiroshima",
+    "first": "Modifier",
+    "second": "test",
+    "third": "test",
+   "fourth": "test",
+    "fifth": "test"
 }
 
 ###
@@ -35,7 +34,7 @@ POST http://localhost:3000/villes
 Content-Type: application/json
 
 {
-    "ville": "Hiroshima",
+    "ville": "Tokyo",
     "first": "test",
     "second": "test",
     "third": "test",

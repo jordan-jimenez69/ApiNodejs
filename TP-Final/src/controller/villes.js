@@ -1,4 +1,3 @@
-import { villes } from "../Data/villes.js";
 import ville from "../models/ville.js";
 
  const getvilles = (req, res) => {
@@ -9,13 +8,11 @@ import ville from "../models/ville.js";
 };
 
  const getVilleById = (req, res) => {
-    const id = parseInt(req.params.id);
-    const ville = villes.find(ville => ville.id === id);
-    if (ville) {
-        res.json(ville);
-    } else {
-        res.status(404).json({ message: "Ville non trouvée" });
-    }
+    const id = req.params.id;
+    ville.findById(id)
+    .then((result) => {
+        res.json(result);
+    }); 
 };
 
 const addVille = (req, res) => {
@@ -29,9 +26,36 @@ const addVille = (req, res) => {
         });
 };
 
+const updateVilleById = (req, res) => {
+    const id = req.params.id;
+    const updateData = req.body;
+
+    ville.findByIdAndUpdate(id, updateData, { new: true })
+        .then((updatedVille) => {
+            if (!updatedVille) {
+                return res.status(404).json({ message: "Ville introuvable" });
+            }
+            res.status(200).json(updatedVille);
+        });
+};
+
+const deleteVilleById = (req, res) => {
+    const id = req.params.id;
+    
+    ville.findByIdAndDelete(id)
+        .then((deleteVille) => {
+            if (!deleteVille) {
+                return res.status(404).json({ message: "Ville introuvable" });
+            }
+            res.status(200).json(deleteVille);
+        });
+};
+
 
 export default {
     getvilles,
     getVilleById,
     addVille,
+    updateVilleById,
+    deleteVilleById,
 };
