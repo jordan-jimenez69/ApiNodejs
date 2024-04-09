@@ -14,8 +14,16 @@ import { validationResult } from "express-validator";
     ville.findById(id)
     .then((result) => {
         res.json(result);
-    }); 
+    })
+    .catch((error) => {
+      console.log(error);
+      throw new Error(error);
+    });
 };
+
+const getError = (req, res) => {
+    throw new Error("This is an error");
+}
 
 const addVille = (req, res) => {
     const bodyContent = req.body;
@@ -33,7 +41,11 @@ const addVille = (req, res) => {
     newVille.save()
         .then((result) => {
             res.status(201).json(result);
-        });
+        })
+        .catch((error) => {
+            console.log(error);
+            throw new Error(error);
+          });
 }};
 
 const updateVilleById = (req, res) => {
@@ -68,4 +80,5 @@ export default {
     addVille,
     updateVilleById,
     deleteVilleById,
+    getError
 };
