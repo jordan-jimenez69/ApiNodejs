@@ -1,4 +1,6 @@
+import { request } from "express";
 import ville from "../models/ville.js";
+import { validationResult } from "express-validator";
 
  const getvilles = (req, res) => {
     ville.find()
@@ -18,13 +20,21 @@ import ville from "../models/ville.js";
 const addVille = (req, res) => {
     const bodyContent = req.body;
 
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    else {
+
     const newVille = new ville(bodyContent);
 
     newVille.save()
         .then((result) => {
             res.status(201).json(result);
         });
-};
+}};
 
 const updateVilleById = (req, res) => {
     const id = req.params.id;
