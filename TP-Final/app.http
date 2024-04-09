@@ -52,8 +52,8 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-    "email": "admin",
-    "password": "admin"
+    "email": "JIJIII@test.com",
+    "password": "Testttt"
 }
 
 ###
@@ -62,8 +62,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "admin",
-    "password": "admin",
-    "name": "Jordan",
+    "email": "JIJIII@test.com",
+    "password": "Testttt",
+    "name": "Joo",
     "phoneNumber": "0606060606"
 }

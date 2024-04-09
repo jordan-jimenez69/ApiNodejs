@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export default function auth(req, res, next) {
+    try {
   // recuperer le header authorization
   const header = req.header("Authorization");
   // "Bearer token"
@@ -19,8 +20,15 @@ export default function auth(req, res, next) {
 
   // verifier si le token est null
 
+  if (!decodedToken) {
+    return res.status(401).json({ message: "Unauthorized" });
+}
   // vous allez ensuite modifier request pour qu'il contiennent des infos relatives
   // au user authentifié
   req.user = decodedToken;
   next();
+} catch (error) {
+  // En cas d'erreur, on renvoie une erreur 401
+  return res.status(401).json({ message: "Unauthorized" });
+}
 }
