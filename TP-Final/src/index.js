@@ -2,7 +2,9 @@ import "dotenv/config";
 import mongoose from "mongoose"
 import express from "express";
 import villesRoutes from "./routes/villes.js";
+import authRoutes from "./routes/auth.js";
 import { handleUncaughtErrors } from "./Middlewares/error.js";
+import isAuth from "./Middlewares/auth.js";
 
 
 const app = express();
@@ -12,7 +14,9 @@ const MONGO_STRING = process.env.MONGO_STRING;
 
 //MidleWare
 app.use(express.json());
-app.use("/villes", villesRoutes)
+
+app.use("/villes", isAuth, villesRoutes)
+app.use("/auth", authRoutes);
 
 
 //Routes

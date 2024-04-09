@@ -1,4 +1,3 @@
-import { request } from "express";
 import ville from "../models/ville.js";
 import { validationResult } from "express-validator";
 

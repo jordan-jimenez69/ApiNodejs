@@ -45,3 +45,25 @@ Content-Type: application/json
    "fourth": "qaaqa",
     "fifth": "qaaqa"
 }
+
+###
+
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "admin",
+    "password": "admin"
+}
+
+###
+
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "admin",
+    "password": "admin",
+    "name": "Jordan",
+    "phoneNumber": "0606060606"
+}
