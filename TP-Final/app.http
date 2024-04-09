@@ -2,7 +2,7 @@ GET http://localhost:3001
 
 ###
 
-GET http://localhost:3001/villes
+GET http://localhost:3000/villes
 
 ###
 
@@ -27,4 +27,18 @@ Content-Type: application/json
 {
     "brand": "Lamborgigni",
     "model": "F8"
+}
+
+###
+
+POST http://localhost:3000/villes
+Content-Type: application/json
+
+{
+    "ville": "Hiroshima",
+    "first": "test",
+    "second": "test",
+    "third": "test",
+   "fourth": "test",
+    "fifth": "test"
 }
