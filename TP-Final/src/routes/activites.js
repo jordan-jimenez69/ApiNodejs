@@ -1,11 +1,12 @@
 import express from "express";
-import activitesController from "../controller/activites.js"
-import { body } from "express-validator";
+import { getActiviteByVille, addActivityToVille } from '../controller/activites.js';
+
 const router = express.Router();
 
 
-router.get("/villes/:villeId/activites", activitesController, getActiviteByVille);
+router.get("/villes/:villeId/activites", getActiviteByVille);
 
+router.post("/villes/:villeId/activites", addActivityToVille);
 
 
 export default router;

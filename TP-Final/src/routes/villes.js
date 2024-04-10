@@ -9,11 +9,6 @@ router.get("/", villesController.getError);
 router.post("/", 
 [
     body ("ville").trim().isLength({ max: 20, min: 2 }),
-    body("first").trim().isLength({ max: 50, min: 2 }),
-    body("second").trim().isLength({ max: 50, min: 2 }),
-    body("third").trim().isLength({ max: 50, min: 2 }),
-    body("fourth").trim().isLength({ max: 50, min: 2 }),
-    body("fifth").trim().isLength({ max: 50, min: 2 })
 ]
 , villesController.addVille);
 router.put("/:id", villesController.updateVilleById);

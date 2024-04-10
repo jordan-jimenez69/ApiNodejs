@@ -14,6 +14,11 @@ const activiteSchema = new Schema({
     type: String,
     required: true,
   },
+  ville: {
+    type: Schema.Types.ObjectId,
+    ref: 'Ville',
+    required: true,
+  },
 });
 
 export default model("Activite", activiteSchema);

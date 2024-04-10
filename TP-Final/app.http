@@ -1,6 +1,6 @@
 GET http://localhost:3000
 
-###
+### Villes
 
 GET http://localhost:3000/error
 
@@ -24,29 +24,21 @@ PUT http://localhost:3000/villes/66150266a9433210119f43f6
 Content-Type: application/json
 
 {
-    "ville": "Hiroshima",
-    "first": "Modifier",
-    "second": "test",
-    "third": "test",
-   "fourth": "test",
-    "fifth": "test"
+    "ville": "Hiroshima"
 }
 
-###
+### 
 
 POST http://localhost:3000/villes
 Content-Type: application/json
 
 {
-    "ville": "Kenjaku",
-    "first": "qaqa",
-    "second": "a",
-    "third": "qaqa",
-   "fourth": "qaaqa",
-    "fifth": "qaaqa"
+    "ville": "Kenjaku"
 }
 
-###
+
+
+### Authentification
 
 POST http://localhost:3000/auth/signin
 Content-Type: application/json
@@ -76,4 +68,16 @@ Content-Type: application/json
     "password": "Azerty01",
     "name": "Jo",
     "phoneNumber": "0707070707"
+}
+
+
+### Activité
+
+POST http://localhost:3000/villes/66168f81be63e534d011a7a5
+Content-Type: application/json
+
+{
+    "Name": "Shibuya",
+    "adress": "Shibuya",
+    "Description": "commune dans la ville de Tokyo"
 }

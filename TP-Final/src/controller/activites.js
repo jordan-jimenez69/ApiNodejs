@@ -1,9 +1,9 @@
 import Activite from "../models/activite.js";
-import { validationResult } from "express-validator";
+import Ville from "../models/ville.js";
 
-
-const getActiviteByVille = async (req, res) => {
+export const getActiviteByVille = async (req, res) => {
     try {
+        
         const villeId = req.params.villeId;
 
         const activites = await Activite.find({ ville: villeId });
@@ -14,75 +14,28 @@ const getActiviteByVille = async (req, res) => {
     }
 };
 
- const getActiviteByVilleById = (req, res) => {
-    const id = req.params.id;
-    ville.findById(id)
-    .then((result) => {
-        res.json(result);
-    })
-    .catch((error) => {
-      console.log(error);
-      throw new Error(error);
-    });
-};
+export const addActivityToVille = async (req, res) => {
+    try {
+        const { villeId, name, adress, description } = req.body;
 
-const getError = (req, res) => {
-    throw new Error("This is an error");
-};
+        // Vérifier si la ville existe
+        const ville = await Ville.findById(villeId);
+        if (!ville) {
+            return res.status(404).json({ message: "Ville non trouvée." });
+        }
 
-const addActiviteByVille = (req, res) => {
-    const bodyContent = req.body;
+        const nouvelleActivite = new Activite({
+            name,
+            adress,
+            description,
+            ville: ville._id // Associer l'activité à la ville correspondante
+        });
 
-    const errors = validationResult(req);
+        const activite = await nouvelleActivite.save();
 
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        res.status(201).json(activite);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-    else {
-
-    const newVille = new ville(bodyContent);
-
-    newVille.save()
-        .then((result) => {
-            res.status(201).json(result);
-        })
-        .catch((error) => {
-            console.log(error);
-            throw new Error(error);
-          });
-}};
-
-const updateActiviteByVilleById = (req, res) => {
-    const id = req.params.id;
-    const updateData = req.body;
-
-    ville.findByIdAndUpdate(id, updateData, { new: true })
-        .then((updatedVille) => {
-            if (!updatedVille) {
-                return res.status(404).json({ message: "Ville introuvable" });
-            }
-            res.status(200).json(updatedVille);
-        });
 };
 
-const deleteActiviteByVilleById = (req, res) => {
-    const id = req.params.id;
-    
-    ville.findByIdAndDelete(id)
-        .then((deleteVille) => {
-            if (!deleteVille) {
-                return res.status(404).json({ message: "Ville introuvable" });
-            }
-            res.status(200).json(deleteVille);
-        });
-};
-
-
-export default {
-    getActiviteByVille,
-    getActiviteByVilleById,
-    addActiviteByVille,
-    updateActiviteByVilleById,
-    deleteActiviteByVilleById,
-    getError
-};
