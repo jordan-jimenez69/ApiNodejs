@@ -22,7 +22,7 @@ import { validationResult } from "express-validator";
 
 const getError = (req, res) => {
     throw new Error("This is an error");
-}
+};
 
 const addVille = (req, res) => {
     const bodyContent = req.body;
@@ -32,7 +32,6 @@ const addVille = (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     else {
 
     const newVille = new ville(bodyContent);

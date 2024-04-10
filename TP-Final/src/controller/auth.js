@@ -13,7 +13,20 @@ export const signup = async (req, res, next) => {
         }
 
         const { email, password, name, phoneNumber } = req.body;
-        // On va hasher le mot de passe
+
+        // Vérifier si l'adresse e-mail existe déjà
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: "Cette adresse e-mail est déjà utilisée." });
+        }
+
+        // Vérifier si le numéro de téléphone existe déjà
+        const existingphoneNumber = await User.findOne({ phoneNumber });
+        if (existingphoneNumber) {
+            return res.status(400).json({ message: "Ce numéro de téléphone est déjà utilisé." });
+        }
+
+        // hasher mot de passe
         const hashedPassword = await bcrypt.hash(password, 12);
 
         const newUser = new User({
