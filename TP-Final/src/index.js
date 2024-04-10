@@ -6,7 +6,6 @@ import authRoutes from "./routes/auth.js";
 import { handleUncaughtErrors } from "./Middlewares/error.js";
 import isAuth from "./Middlewares/auth.js";
 
-
 const app = express();
 
 const PORT = process.env.PORT || 3001;
@@ -16,6 +15,7 @@ const MONGO_STRING = process.env.MONGO_STRING;
 app.use(express.json());
 
 app.use("/villes", isAuth, villesRoutes)
+app.use("/villes/:villeId/activites", isAuth, villesRoutes)
 app.use("/auth", authRoutes);
 
 
