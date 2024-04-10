@@ -58,12 +58,22 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:3000/auth/signin/phone
+Content-Type: application/json
+
+{
+    "phoneNumber": "0606060606",
+    "password": "Testttt"
+}
+
+###
+
 POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
     "email": "Test@test.com",
-    "password": "Testttt",
+    "password": "Azerty01",
     "name": "Jo",
     "phoneNumber": "0707070707"
 }

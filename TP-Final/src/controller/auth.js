@@ -44,7 +44,7 @@ export const signup = async (req, res, next) => {
     }
 };
 
-export const signin = async (req, res, next) => {
+export const signinWithemail = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email: email });
@@ -61,6 +61,32 @@ export const signin = async (req, res, next) => {
         // genere un token
         const token = jwt.sign(
             { email: user.email, id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "2h" }
+        );
+        res.status(200).json({ token });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const signinWithphone = async (req, res, next) => {
+    try {
+        const { phoneNumber, password } = req.body;
+        const user = await User.findOne({ phoneNumber: phoneNumber });
+        if (!user) {
+            //  l'utilisateur n'existe pas
+            return res.status(404).json({ message: "Utilisateur non trouvé." });
+        }
+        // si l'utilisateur existe, on compare les mots de passe
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            // Si le mot de passe est invalide, on renvoie une erreur
+            return res.status(401).json({ message: "Mot de passe incorrect." });
+        }
+        // genere un token
+        const token = jwt.sign(
+            { phoneNumber: user.phoneNumber, id: user._id },
             process.env.JWT_SECRET,
             { expiresIn: "2h" }
         );
