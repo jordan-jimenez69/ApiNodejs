@@ -10,13 +10,6 @@ const MONGO_STRING = process.env.MONGO_STRING;
 const app = CreateApp();
 
 
-//Routes
-app.get("/", (req, res) => {
-    res.json({message: "Hello"});
-});
-  
-
-
 mongoose.connect(MONGO_STRING).then(() => {
     console.log("Connecté");
 });
