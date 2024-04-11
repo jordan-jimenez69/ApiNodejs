@@ -11,7 +11,7 @@ const router = Router();
 
 
 router.use("/villes", isAuth, villesRoutes)
-router.use("/villes/:villeId/activites", isAuth, activitesRoutes)
+router.use("/activites", isAuth, activitesRoutes)
 router.use("/auth", authRoutes);
 
 router.use("/uploads", fileRouter);

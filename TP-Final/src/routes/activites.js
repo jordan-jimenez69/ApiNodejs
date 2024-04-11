@@ -4,7 +4,7 @@ import { getActiviteByVille, addActivityToVille } from '../controller/activites.
 const router = express.Router();
 
 
-router.get("/villes/:villeId/activites", getActiviteByVille);
+router.get("/villes/:villeId", getActiviteByVille);
 
 router.post("/villes/:villeId/activites", addActivityToVille);
 
