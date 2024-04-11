@@ -73,11 +73,12 @@ Content-Type: application/json
 
 ### Activité
 
-POST http://localhost:3000/villes/66168f81be63e534d011a7a5
+POST http://localhost:3000/activites/villes/66168f81be63e534d011a7a5
 Content-Type: application/json
 
 {
-    "Name": "Shibuya",
-    "adress": "Shibuya",
-    "Description": "commune dans la ville de Tokyo"
+    "name": "Ginza",
+    "adress": "Ginza",
+    "Ddscription": "commune riche dans la ville de Tokyo",
+    "ville": "66168f81be63e534d011a7a5"
 }
