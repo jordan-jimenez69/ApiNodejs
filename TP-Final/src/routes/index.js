@@ -4,6 +4,7 @@ import villesRoutes from "./villes.js";
 import activitesRoutes from "./activites.js";
 import authRoutes from "./auth.js";
 import isAuth from "../Middlewares/auth.js";
+
 import fileRouter from "./file.js";
 
 

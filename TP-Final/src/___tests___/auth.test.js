@@ -18,18 +18,18 @@ describe("creation d'un utilisateur et login", () => {
 
   it("Should create a new user", async () => {
     const response = await request(app).post("/auth/signup").send({
-      email: "test",
-      password: "test",
+      email: "test@test.com",
+      password: "Azerty0999",
       name: "test",
-      phoneNumber: "123456789",
+      phoneNumber: "0606060606",
     });
     expect(response.statusCode).toBe(201);
   });
 
   it("Should login a user", async () => {
     const response = await request(app).post("/auth/signin").send({
-      email: "test",
-      password: "test",
+      email: "test@test.com",
+      password: "Azerty0999",
     });
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty("token");
@@ -37,7 +37,7 @@ describe("creation d'un utilisateur et login", () => {
 
   afterAll(async () => {
     // delete the user created
-    await user.deleteOne({ email: "test" });
+    await user.deleteOne({ email: "test@test.com" });
     await mongoose.connection.close();
   });
 });
