@@ -1,13 +1,7 @@
-Installation projet Node : 
-npm init -y
+Mon projet API consiste a afficher dans un premier temps differentes villes du Japon ou la personne authentifier pourrai y acceder ainsi que de creer de nouvelle ville du Japon, modifier ou supprimer.
+Chaque ville possede des activités propre a elle. on peut les consulté, en ajouté, les modifié ou supprimer(Si on est Authentifier encore une fois).
 
-npm i express 
+Pour acceder a cette API, il faut créer un compte avec une adresse mail, mot de passe, un nom et un numéro de téléphone.
 
-création d'un dossier src 
-et fichier index.js
-
-dans package.json -- et script 
-"start": "node src/index.js"
-
-dans package.json
-  "type": "module"
+Vous avez deux choix pour pouvoir vous connecter, par numero de téléphone ou adresse mail.
+Une fois connecter vous recevrez un Token qui vas vous permettre d'acceder a la totalité de l'API.
