@@ -16,24 +16,19 @@ export const getActiviteByVille = async (req, res) => {
 
 export const addActivityToVille = async (req, res) => {
     try {
-        const { villeId, name, adress, description } = req.body;
-
-        // Vérifier si la ville existe
-        const ville = await Ville.findById(villeId);
-        if (!ville) {
-            return res.status(404).json({ message: "Ville non trouvée." });
-        }
-
+        const villeId = req.params.villeId;
+        const { name, adress, description } = req.body; 
+        
         const nouvelleActivite = new Activite({
             name,
             adress,
             description,
-            ville: ville._id // Associer l'activité à la ville correspondante
+            ville: villeId 
         });
 
-        const activite = await nouvelleActivite.save();
+        const activiteAjoutee = await nouvelleActivite.save();
 
-        res.status(201).json(activite);
+        res.status(201).json(activiteAjoutee);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

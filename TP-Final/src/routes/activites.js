@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/villes/:villeId", getActiviteByVille);
 
-router.post("/villes/:villeId/activites", addActivityToVille);
+router.post("/villes/:villeId", addActivityToVille);
 
 
 export default router;

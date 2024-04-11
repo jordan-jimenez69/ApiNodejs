@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const activiteSchema = new Schema({
-  Name: {
+  name: {
     type: String,
     required: true,
   },
@@ -10,7 +10,7 @@ const activiteSchema = new Schema({
     type: String,
     required: true,
   },
-  Description: {
+  description: {
     type: String,
     required: true,
   },
