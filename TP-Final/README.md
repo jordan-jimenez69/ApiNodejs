@@ -8,3 +8,35 @@ Une fois connecter vous recevrez un Token qui vas vous permettre d'acceder a la 
 
 Comment lancer le projet : 
 
+- Cloner le projet GIT
+- Ce mettre dans le dossier TP-Final
+- Modifier le .env.example en suuprimant ".example" et modifier le contenue a l'interieur :
+
+MONGO_STRING=mongodb+srv://jimenezjordan:Azerty02@apinodejs.ifeic1s.mongodb.net/?retryWrites=true&w=majority&appName=APINodejs
+PORT=3000
+JWT_SECRET=Azerty02
+
+- Installer toute les package si ce n'es pas fait renseigner sur package.json ainsi que l'extention REST Client !
+
+Comment marche l'Application : 
+
+- vous pouvez allez sur app.http ou POSTMAN, un systeme authentification avec des autorisations sont mis sur cette appli.
+Si vous essayer de récupéré les villes vous aurez un message "Unauthorized".
+Donc je vous laisse vous créer un compte ou vous connectez si vous en avez un.
+ATTENTION !!! Pour creer votre compte il faut impérativement :
+Mail : une adresse mail Valide ! sinon vous pourrez pas creer de compte 
+Mot de passe : Minimum 6 caractères ! pour la sécurité 
+name : minimum 2 caractères !
+Téléphone : Obligatoirement 10 Chiffre !
+
+- Une fois connecter vous aurez accèes a un token
+Je vous laisse le renseigner sur POSTMAN en ajoutant avec Bearer Token et renseigné un GET, POST, DELETE ou PUT.
+Voici un exemple : http://localhost:3000/villes
+ou encore : http://localhost:3000/activites/villes/:villeId
+
+
+TEST avec Jest :
+
+- Pour lancer le test avec Jest il faudrais juste mettre en commentaire "const __dirname = url.fileURLToPath(new URL(".", import.meta.url));" dans mon app.js .
+
+- lancer npm run test
