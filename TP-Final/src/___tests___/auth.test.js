@@ -21,7 +21,7 @@ describe("creation d'un utilisateur et login", () => {
       email: "test@test.com",
       password: "Azerty0999",
       name: "test",
-      phoneNumber: "0606060606",
+      phoneNumber: "0606060606"
     });
     expect(response.statusCode).toBe(201);
   });
@@ -29,7 +29,7 @@ describe("creation d'un utilisateur et login", () => {
   it("Should login a user", async () => {
     const response = await request(app).post("/auth/signin").send({
       email: "test@test.com",
-      password: "Azerty0999",
+      password: "Azerty0999"
     });
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty("token");

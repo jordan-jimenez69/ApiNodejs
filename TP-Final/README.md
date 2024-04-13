@@ -5,3 +5,6 @@ Pour acceder a cette API, il faut créer un compte avec une adresse mail, mot de
 
 Vous avez deux choix pour pouvoir vous connecter, par numero de téléphone ou adresse mail.
 Une fois connecter vous recevrez un Token qui vas vous permettre d'acceder a la totalité de l'API.
+
+Comment lancer le projet : 
+
