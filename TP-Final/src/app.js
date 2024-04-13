@@ -4,7 +4,7 @@ import routes from "./routes/index.js";
 import multer from "multer";
 import path from "path";
 import * as url from "url";
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+//const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {

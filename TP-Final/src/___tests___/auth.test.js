@@ -21,7 +21,7 @@ describe("creation d'un utilisateur et login", () => {
       email: "test@test.com",
       password: "Azerty0999",
       name: "test",
-      phoneNumber: "0606060606"
+      phoneNumber: "0646050605"
     });
     expect(response.statusCode).toBe(201);
   });

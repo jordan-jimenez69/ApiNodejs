@@ -29,6 +29,8 @@ Mot de passe : Minimum 6 caractères ! pour la sécurité
 name : minimum 2 caractères !
 Téléphone : Obligatoirement 10 Chiffre !
 
+A savoir il ne peut pas avoir deux compte avec la meme adresse mail et meme numero de téléphone.
+
 - Une fois connecter vous aurez accèes a un token
 Je vous laisse le renseigner sur POSTMAN en ajoutant avec Bearer Token et renseigné un GET, POST, DELETE ou PUT.
 Voici un exemple : http://localhost:3000/villes
