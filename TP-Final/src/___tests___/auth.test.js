@@ -16,7 +16,7 @@ describe("creation d'un utilisateur et login", () => {
     app = CreateApp();
   });
 
-  it("Should create a new user", async () => {
+  it("Pouvoir créer un utilisateur", async () => {
     const response = await request(app).post("/auth/signup").send({
       email: "test@test.com",
       password: "Azerty0999",
@@ -26,7 +26,7 @@ describe("creation d'un utilisateur et login", () => {
     expect(response.statusCode).toBe(201);
   });
 
-  it("Should login a user", async () => {
+  it("Pouvoir ce connecter avec le compte créer", async () => {
     const response = await request(app).post("/auth/signin").send({
       email: "test@test.com",
       password: "Azerty0999"
@@ -36,7 +36,7 @@ describe("creation d'un utilisateur et login", () => {
   });
 
   afterAll(async () => {
-    // delete the user created
+    // Suppression de user
     await user.deleteOne({ email: "test@test.com" });
     await mongoose.connection.close();
   });
