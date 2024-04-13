@@ -42,3 +42,7 @@ TEST avec Jest :
 - Pour lancer le test avec Jest il faudrais juste mettre en commentaire "const __dirname = url.fileURLToPath(new URL(".", import.meta.url));" dans mon app.js .
 
 - lancer npm run test
+
+- le test crée un utilisateur, se connecte avec récupere dans une variable le token pour pouvoir l'utilisé pour récupéré les villes déja crée et faire un console log puis il crée un nouvelle ville nommé Nara. 
+Enfin il supprime utilisateur crée ainsi que la ville crée.
+Et on ferme la connection.

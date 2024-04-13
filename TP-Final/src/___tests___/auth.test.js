@@ -1,43 +1,65 @@
 import "dotenv/config";
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import request from "supertest";
-const MONGO_STRING = process.env.MONGO_STRING;
 import { CreateApp } from "../app.js";
 import user from "../models/user.js";
+import ville from "../models/ville.js";
 
-describe("creation d'un utilisateur et login", () => {
+describe("Tests utilisateur et villes", () => {
   let app;
+  let authToken; // token d'authentification
+  let villeId; //supp de la ville créer
 
-  beforeAll(() => {
-    mongoose
-      .connect(MONGO_STRING)
-      .then(() => console.log("Connected to the database for Testing!"))
-      .catch((err) => console.log(err));
+
+  beforeAll(async () => {
+    await mongoose.connect(process.env.MONGO_STRING);
+    
     app = CreateApp();
+    
+    const userResponse = await request(app)
+      .post("/auth/signup")
+      .send({
+        email: "test@test.com",
+        password: "Azerty0999",
+        name: "test",
+        phoneNumber: "0646050605"
+      });
+    expect(userResponse.statusCode).toBe(201);
+
+    const loginResponse = await request(app)
+      .post("/auth/signin")
+      .send({
+        email: "test@test.com",
+        password: "Azerty0999"
+      });
+    expect(loginResponse.statusCode).toBe(200);
+    expect(loginResponse.body).toHaveProperty("token");
+    authToken = loginResponse.body.token; // Stocker le token d'authentification
   });
 
-  it("Pouvoir créer un utilisateur", async () => {
-    const response = await request(app).post("/auth/signup").send({
-      email: "test@test.com",
-      password: "Azerty0999",
-      name: "test",
-      phoneNumber: "0646050605"
-    });
-    expect(response.statusCode).toBe(201);
+  it('GET /villes - Récupérer toutes les villes', async () => {
+    const response = await request(app)
+      .get('/villes')
+      .set('Authorization', `Bearer ${authToken}`); 
+    expect(response.status).toBe(200);
+    console.log(response.body);
   });
 
-  it("Pouvoir ce connecter avec le compte créer", async () => {
-    const response = await request(app).post("/auth/signin").send({
-      email: "test@test.com",
-      password: "Azerty0999"
+  it('POST /villes - Ajouter une nouvelle ville', async () => {
+    const newVille = { ville: 'Nara' };
+    const response = await request(app)
+      .post('/villes')
+      .set('Authorization', `Bearer ${authToken}`)
+      .send(newVille);
+    expect(response.status).toBe(201);
+    villeId = response.body._id;
     });
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty("token");
-  });
 
   afterAll(async () => {
-    // Suppression de user
     await user.deleteOne({ email: "test@test.com" });
+
+    await ville.findByIdAndDelete(villeId);
+
     await mongoose.connection.close();
   });
 });
